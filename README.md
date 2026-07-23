@@ -1,5 +1,4 @@
 # 🛡️ Free Cybersecurity & Information Security Resources
-```markdown
 <p align="center">
   <img src="https://img.shields.io/github/stars/ameer-18-star/Free_CyberSecurity_Resources?style=for-the-badge&color=blue" alt="Stars">
   <img src="https://img.shields.io/github/forks/ameer-18-star/Free_CyberSecurity_Resources?style=for-the-badge&color=violet" alt="Forks">
@@ -18,7 +17,6 @@
   <a href="#-contributing">Contributing</a> •
   <a href="#-disclaimer">Disclaimer</a>
 </p>
-```
 ---
 
 ## 📌 Repository Overview
