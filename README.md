@@ -1,23 +1,6 @@
 # 🛡️ Free Cybersecurity & Information Security Resources
-<p align="center">
-  <img src="https://img.shields.io/github/stars/ameer-18-star/Free_CyberSecurity_Resources?style=for-the-badge&color=blue" alt="Stars">
-  <img src="https://img.shields.io/github/forks/ameer-18-star/Free_CyberSecurity_Resources?style=for-the-badge&color=violet" alt="Forks">
-  <img src="https://img.shields.io/github/issues/ameer-18-star/Free_CyberSecurity_Resources?style=for-the-badge&color=orange" alt="Issues">
-  <img src="https://img.shields.io/github/license/ameer-18-star/Free_CyberSecurity_Resources?style=for-the-badge&color=green" alt="License">
-  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge" alt="PRs Welcome">
-</p>
 
-<p align="center">
-  <b>A curated, structured collection of free high-quality cybersecurity courses, hands-on labs, certifications, cheatsheets, and essential security tools.</b>
-</p>
-
-<p align="center">
-  <a href="#-getting-started--roadmap">Roadmap</a> •
-  <a href="#-table-of-contents">Table of Contents</a> •
-  <a href="#-contributing">Contributing</a> •
-  <a href="#-disclaimer">Disclaimer</a>
-</p>
----
+Welcome to Free Cybersecurity Resources—a curated, community-driven collection of no-cost learning materials designed to help you launch or elevate your career in cybersecurity. Whether you're mastering networking basics, training for certifications, hunting bugs, or analyzing threats on the front lines, this repository brings together top-tier courses, hands-on practice platforms, cheatsheets, and tools into one structured, zero-cost roadmap.
 
 ## 📌 Repository Overview
 
