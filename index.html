@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>185+ Free Cybersecurity &amp; InfoSec Resources</title>
+<meta name="description" content="A curated, searchable hub of free cybersecurity and information security courses, certifications, labs, drives, repos and videos.">
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --card:#141414;
+    --border:#262626;
+    --white:#ffffff;
+    --gray:#b7b7b7;
+    --gray-dim:#8a8a8a;
+    --yellow:#ffcc00;
+    --red:#ff3333;
+    --red-deep:#e60000;
+    --green:#2ecc71;
+    --blue:#3399ff;
+    --purple:#b388ff;
+    --radius:10px;
+    --mono: 'JetBrains Mono','Fira Code',ui-monospace,SFMono-Regular,Consolas,monospace;
+    --sans: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--white);
+    font-family:var(--sans);
+    line-height:1.55;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size:38px 38px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  header.topnav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,10,10,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1200px;margin:0 auto;padding:10px 20px;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .brand{
+    font-family:var(--mono);
+    font-weight:700;font-size:14px;letter-spacing:1px;
+    color:var(--yellow);
+    white-space:nowrap;
+  }
+  .brand span{color:var(--red);}
+  nav.catlinks{
+    display:flex;gap:4px;overflow-x:auto;flex:1;
+    scrollbar-width:none;
+  }
+  nav.catlinks::-webkit-scrollbar{display:none;}
+  nav.catlinks a{
+    font-size:12.5px;padding:6px 10px;border-radius:6px;
+    color:var(--gray);white-space:nowrap;border:1px solid transparent;
+    transition:.15s;
+  }
+  nav.catlinks a:hover{color:var(--bg);background:var(--yellow);}
+
+  .search-wrap{
+    max-width:1200px;margin:0 auto;padding:10px 20px 14px;
+  }
+  #searchInput{
+    width:100%;padding:12px 16px;font-size:14px;
+    background:var(--card);border:1px solid var(--border);
+    border-radius:8px;color:var(--white);font-family:var(--mono);
+    outline:none;transition:.2s;
+  }
+  #searchInput:focus{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,204,0,0.12);}
+  #searchInput::placeholder{color:var(--gray-dim);}
+  #resultCount{font-size:12px;color:var(--gray-dim);margin-top:6px;font-family:var(--mono);}
+
+  .legend{
+    max-width:1200px;margin:0 auto;padding:0 20px 14px;
+    display:flex;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--gray-dim);
+  }
+  .legend .lg-item{display:flex;align-items:center;gap:6px;}
+  .lg-dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+
+  .hero{
+    position:relative;z-index:1;
+    max-width:1200px;margin:0 auto;padding:56px 20px 30px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+  }
+  .hero .tag{
+    display:inline-block;font-family:var(--mono);font-size:12px;
+    color:var(--red);border:1px solid var(--red);padding:4px 12px;
+    border-radius:20px;margin-bottom:18px;letter-spacing:1px;
+  }
+  .hero h1{
+    font-size:clamp(28px,5vw,50px);
+    margin:0 0 16px;
+    font-weight:800;
+    letter-spacing:-1px;
+    background:linear-gradient(100deg,#fff 30%,var(--yellow) 60%,var(--red) 90%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lead{
+    color:var(--gray);max-width:720px;margin:0 auto 22px;font-size:16px;
+  }
+  .stat-row{
+    display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:10px;
+  }
+  .stat{
+    font-family:var(--mono);font-size:12px;padding:8px 14px;
+    background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--gray);
+  }
+  .stat b{color:var(--yellow);}
+
+  main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:10px 20px 80px;}
+
+  section.category{margin-top:56px;scroll-margin-top:150px;}
+  .cat-head{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:6px;
+    border-bottom:2px solid var(--border);padding-bottom:12px;
+  }
+  .cat-head h2{
+    font-size:22px;margin:0;font-weight:700;
+    display:flex;align-items:center;gap:10px;
+  }
+  .cat-head .count{
+    font-family:var(--mono);font-size:12px;color:var(--bg);
+    background:var(--yellow);padding:2px 9px;border-radius:20px;font-weight:700;
+  }
+  .cat-desc{color:var(--gray-dim);font-size:13.5px;margin:10px 0 20px;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:16px;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px;
+    display:flex;flex-direction:column;gap:10px;
+    transition:.18s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(var(--yellow),var(--red));
+    opacity:0;transition:.18s;
+  }
+  .card:hover{
+    border-color:var(--yellow);
+    transform:translateY(-3px);
+    box-shadow:0 8px 24px rgba(255,204,0,0.08);
+  }
+  .card:hover::before{opacity:1;}
+  .card h3{
+    margin:0;font-size:15.5px;font-weight:700;color:var(--white);
+    line-height:1.3;
+  }
+  .card p{
+    margin:0;color:var(--gray);font-size:13px;flex:1;
+  }
+  .badges{display:flex;gap:6px;flex-wrap:wrap;}
+  .badge{
+    font-family:var(--mono);font-size:10px;letter-spacing:.5px;
+    padding:3px 8px;border-radius:20px;font-weight:700;
+    text-transform:uppercase;
+    border:1px solid transparent;
+  }
+  .badge.free{background:rgba(255,204,0,0.12);color:var(--yellow);border-color:rgba(255,204,0,0.35);}
+  .badge.official{background:rgba(255,255,255,0.08);color:var(--white);border-color:var(--border);}
+  .badge.paid{background:rgba(255,51,51,0.1);color:var(--red);border-color:rgba(255,51,51,0.3);}
+  .badge.ext{background:transparent;color:var(--gray-dim);border-color:var(--border);}
+
+  /* level badges - always green */
+  .badge.level{background:rgba(46,204,113,0.12);color:var(--green);border-color:rgba(46,204,113,0.4);}
+
+  /* team-side badges */
+  .badge.team-red{background:rgba(255,51,51,0.12);color:var(--red);border-color:rgba(255,51,51,0.4);}
+  .badge.team-blue{background:rgba(51,153,255,0.12);color:var(--blue);border-color:rgba(51,153,255,0.4);}
+  .badge.team-purple{background:rgba(179,136,255,0.12);color:var(--purple);border-color:rgba(179,136,255,0.4);}
+  .badge.team-yellow{background:rgba(255,204,0,0.12);color:var(--yellow);border-color:rgba(255,204,0,0.4);}
+
+  .card .visit{
+    margin-top:auto;
+    font-family:var(--mono);font-size:12.5px;font-weight:700;
+    color:var(--white);background:var(--red);
+    padding:8px 12px;border-radius:6px;text-align:center;
+    transition:.15s;
+  }
+  .card:hover .visit{background:var(--red-deep);}
+  .card .visit:active{background:#a30000;}
+
+  .no-results{
+    text-align:center;color:var(--gray-dim);padding:60px 20px;
+    font-family:var(--mono);
+  }
+
+  footer{
+    border-top:1px solid var(--border);
+    text-align:center;padding:34px 20px;color:var(--gray-dim);
+    font-size:12.5px;position:relative;z-index:1;
+  }
+  footer a{color:var(--yellow);}
+  footer .warn{color:var(--red);margin-top:8px;font-size:11.5px;}
+
+  ::selection{background:var(--yellow);color:var(--bg);}
+
+  @media(max-width:640px){
+    .cat-head h2{font-size:18px;}
+    .hero{padding:40px 16px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topnav">
+  <div class="nav-inner">
+    <div class="brand">&gt;_ INFOSEC<span>::FREE</span></div>
+    <nav class="catlinks" id="catNav"></nav>
+  </div>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search 185+ resources by name, keyword, or category... (e.g. 'OSCP', 'MITRE', 'labs')">
+    <div id="resultCount"></div>
+  </div>
+  <div class="legend">
+    <span class="lg-item"><span class="lg-dot" style="background:var(--green)"></span>Level: Easy / Moderate / Advance</span>
+    <span class="lg-item"><span class="lg-dot" style="background:var(--red)"></span>Red Teaming</span>
+    <span class="lg-item"><span class="lg-dot" style="background:var(--blue)"></span>Blue Teaming</span>
+    <span class="lg-item"><span class="lg-dot" style="background:var(--purple)"></span>Purple Teaming</span>
+    <span class="lg-item"><span class="lg-dot" style="background:var(--yellow)"></span>General / Other</span>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="tag">// zero-cost training index</span>
+  <h1>185+ Free Cybersecurity &amp; InfoSec Courses</h1>
+  <p class="lead">A single, searchable reference of legitimately free cybersecurity training —
+  certifications, hands-on labs, cloud drives, GitHub roadmaps, vendor portals and video courses.
+  No paywalls required to start learning.</p>
+  <div class="stat-row">
+    <div class="stat"><b id="totalCount">0</b> resources indexed</div>
+    <div class="stat"><b id="totalCats">0</b> categories</div>
+    <div class="stat">Updated <b>Jul 2026</b></div>
+  </div>
+</section>
+
+<main id="main"></main>
+
+<footer>
+  <div>Built as a static reference page. All trademarks and course content belong to their respective organizations.</div>
+  <div class="warn">Community-shared cloud drive links are third-party and unofficial — scan downloads and use a VM for any executables.</div>
+</footer>
+
+<script>
+/* ==========================================================================
+   DATA-DRIVEN RESOURCE INDEX
+   To add a new resource, append an object to the matching category array
+   (or create a new category) using this shape:
+
+   { title: "Course / Resource Name",
+     desc:  "A moderate, 2-3 sentence explanation of what it actually covers.",
+     url:   "https://example.com",
+     tags:  ["free","official"],   // any of: free, paid, official, ext
+     level: "easy" | "moderate" | "advance",
+     team:  "red" | "blue" | "purple" | "yellow"   // yellow = general/other
+   }
+
+   Categories render in the order they appear in CATEGORIES below.
+   ========================================================================== */
+
+const CATEGORIES = [
+  {
+    id: "certificates",
+    title: "Certificates & Certifications",
+    desc: "Structured programs that end in a real, nameable credential — the ones worth putting on a résumé.",
+    items: [
+      { title:"ISC2 Certified in Cybersecurity (CC)", desc:"A no-cost, entry-level program from ISC2 that bundles free self-paced training with a free exam voucher through their workforce initiative. It covers security principles, access controls, network security and incident response at a foundational level, and is designed as a first step toward advanced certifications like CISSP.", url:"https://www.isc2.org/certifications/cc", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"Google Cybersecurity Professional Certificate", desc:"A nine-course Coursera program built by Google that walks complete beginners through networking basics, Linux and SQL, security tools like SIEM platforms, and how to respond to real incidents. The full content is free to audit, and it ends with practical, portfolio-ready projects.", url:"https://www.coursera.org/professional-certificates/google-cybersecurity", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"IBM Cybersecurity Analyst Professional Certificate", desc:"A fourteen-course Coursera path from IBM covering operating system, network and database security, compliance frameworks, penetration testing basics, threat hunting, and how generative AI is changing the analyst role. It's free to audit in full and geared toward landing a first analyst job.", url:"https://www.coursera.org/professional-certificates/ibm-cybersecurity-analyst", tags:["free","official"], level:"moderate", team:"yellow" },
+      { title:"Cisco Cybersecurity Essentials", desc:"A thirty-hour NetAcad course that prepares learners for the CCST Cybersecurity exam while teaching threat intelligence fundamentals, network defense and endpoint protection. It's fully free with hands-on exercises built directly into the platform.", url:"https://www.netacad.com/courses/cybersecurity-essentials", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"Cisco CyberOps Associate", desc:"A defensive-security course that trains learners to monitor, detect and respond to threats the way an actual SOC analyst would, preparing them for Cisco's official CyberOps Associate exam. It's a strong choice if your goal is a Security Operations Center role.", url:"https://www.netacad.com/courses/cyberops-associate", tags:["free","official"], level:"moderate", team:"blue" },
+      { title:"Cisco Ethical Hacker Course", desc:"A seventy-hour offensive-security course covering vulnerability assessment, pentesting tools, social engineering and IoT security, capped off with CTF-style challenges. It leads to Cisco's own Certificate in Ethical Hacking and assumes some prior networking knowledge.", url:"https://www.netacad.com/courses/ethical-hacker", tags:["free","official"], level:"advance", team:"red" },
+      { title:"Qualys Certified Vulnerability Management Professional", desc:"A structured, free learning path on the Qualys Cloud Platform that teaches asset discovery, scanning strategy and risk-based remediation, ending in an official vendor certification. Hands-on labs run entirely in the cloud with nothing to install.", url:"https://www.qualys.com/training", tags:["free","official"], level:"moderate", team:"blue" },
+      { title:"arcX Cyber Threat Intelligence 101", desc:"A free introductory course on the fundamentals of threat intelligence — threat actor motivations, common vectors, and the full intelligence lifecycle — taught by a CREST-certified instructor. Completion awards the arcX Foundation Level Threat Intelligence Analyst credential.", url:"https://arcx.io/courses/cyber-threat-intelligence-101", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"Securiti PrivacyOps Certification", desc:"Covers how global privacy laws translate into day-to-day operational practice, including data mapping, subject-request automation and breach management workflows. It earns IAPP continuing-education credits and suits compliance-minded professionals.", url:"https://education.securiti.ai/certifications/privacyops/", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"Securiti AI Security & Governance Certification", desc:"A focused course on the risks introduced by generative AI, including shadow-AI discovery, LLM firewall concepts, and how emerging regulation applies to AI systems. It's aimed at security and governance teams adapting to AI adoption.", url:"https://education.securiti.ai/certifications/ai-governance/", tags:["free","official"], level:"moderate", team:"yellow" },
+      { title:"SkillFront ISO/IEC 27001 Information Security Associate", desc:"A foundational course on Information Security Management Systems built around the ISO/IEC 27001 standard, including scoping, mandatory requirements and implementation steps. It's currently free as a promotion and includes a bonus e-book and audiobook.", url:"https://www.skillfront.com/ISO-IEC-27001-Information-Security-Associate", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"EC-Council Free Cybersecurity Courses", desc:"A set of over two dozen short, free courses covering security fundamentals, cloud security, DevSecOps and how AI tools intersect with ethical hacking. Each course awards a completion certificate and requires no prior experience.", url:"https://www.eccouncil.org/free-cybersecurity-courses-beginners/", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"IT Masters CISSP (Updated)", desc:"A free, university-affiliated short course that walks through all eight CISSP domains, blending leadership and technical content. It's a solid free way to prep for one of the industry's most respected advanced certifications.", url:"https://itmasters.edu.au/short-courses/cissp-updated/", tags:["free","official"], level:"advance", team:"yellow" },
+      { title:"IT Masters CISM Prep", desc:"A free short course aligned with ISACA's Certified Information Security Manager body of knowledge, focused on enterprise security governance and risk alignment. Best suited to learners who already have some management or security operations experience.", url:"https://itmasters.edu.au/short-courses/cism-prep/", tags:["free","official"], level:"advance", team:"yellow" },
+      { title:"Fortinet NSE 1–3", desc:"Vendor-specific foundational certifications covering the general threat landscape and basic FortiGate firewall operations. They're entirely free, self-paced, and a reasonable starting point if you'll be working with Fortinet security products.", url:"https://training.fortinet.com/", tags:["free","official"], level:"easy", team:"blue" },
+      { title:"freeCodeCamp Information Security Certification", desc:"A three-hundred-hour, project-based certification covering HelmetJS for hardening Node/Express apps and Python for building penetration-testing tools like port scanners and password crackers. It's entirely free and very hands-on.", url:"https://www.freecodecamp.org/", tags:["free","official"], level:"moderate", team:"red" },
+      { title:"upGrad Fundamentals of Cybersecurity", desc:"A short, two-hour beginner course covering core cybersecurity terminology, risk management basics and everyday protective practices. It's a low-pressure way to get oriented before committing to a longer program, and it awards an automatic e-certificate.", url:"https://www.upgrad.com/us/free-course/?country=us", tags:["free","official"], level:"easy", team:"yellow" },
+    ]
+  },
+  {
+    id: "badges",
+    title: "Badges & Achievements",
+    desc: "Micro-credentials, CPE credits and shareable digital badges that stack up over time.",
+    items: [
+      { title:"Cybrary Skill & Career Paths (Credly Badges)", desc:"Free skill paths such as SOC Analyst, Governance and Cybersecurity Leadership that award shareable Credly digital badges plus continuing-education units. They're a good way to build a visible, badge-based track record on LinkedIn at no cost.", url:"https://www.cybrary.it/catalog", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"Picus Security Purple Academy CPE Courses", desc:"Short thirty-to-sixty-minute micro-courses covering MITRE ATT&CK techniques and ransomware behavior from both attacking and defending perspectives, each awarding one CPE credit and a certificate. Great for chipping away at professional development requirements in small sessions.", url:"https://academy.picussecurity.com/courses", tags:["free","official"], level:"moderate", team:"purple" },
+      { title:"Cisco NetAcad Digital Badges", desc:"Every free NetAcad course, starting with Introduction to Cybersecurity, awards a verifiable digital badge you can display on professional profiles. It's a simple, credible way to prove foundational knowledge without paying anything.", url:"https://www.netacad.com/courses/introduction-to-cybersecurity", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"AttackIQ Academy Learning Path Badges", desc:"Completion badges awarded across AttackIQ's free MITRE ATT&CK, Breach and Attack Simulation, and Purple Teaming learning paths. These are practical, hands-on badges rather than passive quiz completions.", url:"https://www.academy.attackiq.com/learning-paths", tags:["free","official"], level:"moderate", team:"purple" },
+      { title:"Securiti Fundamentals Module Badges", desc:"A shareable badge is awarded per module across Securiti's free education tracks, culminating in a final certificate once all modules and the exam are complete. Useful for privacy and data-security professionals building a credential trail.", url:"https://education.securiti.ai/certifications/ai-governance/", tags:["free","official"], level:"easy", team:"yellow" },
+    ]
+  },
+  {
+    id: "labs",
+    title: "Practice Platforms & Labs",
+    desc: "Where theory becomes muscle memory — browser-based ranges, wargames and guided challenge paths.",
+    items: [
+      { title:"picoCTF", desc:"A narrative-driven Capture The Flag competition built by Carnegie Mellon University that wraps binary exploitation, reverse engineering, forensics and web security inside a game-like story. It's widely considered the best possible starting point for someone with zero security background.", url:"https://picoctf.org/", tags:["free","official"], level:"easy", team:"red" },
+      { title:"TryHackMe (Free Tier)", desc:"Guided, browser-based learning paths — including Pre-Security and Jr Penetration Tester — that run inside virtual Linux machines with no local setup required. The free tier alone covers networking, Linux fundamentals and basic offensive and defensive concepts.", url:"https://tryhackme.com/", tags:["free"], level:"easy", team:"yellow" },
+      { title:"Hacker101 CTF", desc:"A set of free video-tutorial-backed challenges from HackerOne that teach web vulnerability hunting, and completing them unlocks private invitations to real bug bounty programs. It's one of the more direct pipelines from learning to actually earning money.", url:"https://www.hacker101.com/", tags:["free","official"], level:"moderate", team:"red" },
+      { title:"OverTheWire: Bandit", desc:"A thirty-four-level terminal wargame that forces you to use SSH, basic scripting and file-permission tricks to find the password for each next level. There's no hand-holding here, which makes it one of the best ways to genuinely master the Linux command line.", url:"https://overthewire.org/wargames/bandit/", tags:["free","official"], level:"moderate", team:"red" },
+      { title:"PortSwigger Web Security Academy", desc:"A free, lab-driven training environment built by the makers of Burp Suite, pairing every topic — SQL injection, XSS, SSRF, OAuth flaws and more — with a live interactive lab against a real target. It's often described as the closest free equivalent to the OSCP's web-focused module.", url:"https://portswigger.net/web-security", tags:["free","official"], level:"advance", team:"red" },
+      { title:"Hack The Box Academy – Starting Point", desc:"Guided, beginner-friendly free machines that teach core penetration-testing concepts and essential tool usage before you move on to HTB's main, more difficult platform. Each machine walks you through the reasoning, not just the commands.", url:"https://www.hackthebox.com/", tags:["free"], level:"easy", team:"red" },
+      { title:"Qualys Cloud-Based Hands-On Labs", desc:"Interactive labs bundled into every free Qualys learning path, letting you practice vulnerability scanning and remediation inside the actual Qualys Cloud Platform with nothing to install locally. Ideal for building muscle memory on a real enterprise-grade tool.", url:"https://www.qualys.com/training", tags:["free","official"], level:"moderate", team:"blue" },
+    ]
+  },
+  {
+    id: "drives",
+    title: "Mega Folders & Cloud Drives",
+    desc: "Community-curated, multi-gigabyte training vaults. Third-party and unofficial — scan everything before running it.",
+    items: [
+      { title:"Multi-Domain IT Library", desc:"A broad Mega.nz vault spanning AWS fundamentals, CompTIA tracks, digital forensics, ethical hacking, ITIL, Linux administration, Microsoft enterprise tools and virtualization setup guides. It's best suited to learners who want breadth across many IT domains before specializing.", url:"https://mega.nz/folder/lm5lgQxT#Qh52YqE0-kwP_-eWohMBbw", tags:["free","ext"], level:"easy", team:"yellow" },
+      { title:"Bug Bounty Bootcamp (21 Modules)", desc:"A sequenced, twenty-one-module bug-bounty curriculum that starts with lab setup and enumeration, moves through common web vulnerabilities like XSS and SQL injection, and ends with monetization strategy. The structure mirrors a formal university course rather than a random pile of videos.", url:"https://mega.nz/folder/96AhRazA#Qci5-I29JIQobl4btJ7w0g", tags:["free","ext"], level:"moderate", team:"red" },
+      { title:"Exploit Development & Network Pivoting", desc:"Advanced material covering full exploitation walkthroughs of real vulnerable applications along with post-exploitation techniques like shell-passing, Tor-over-VPN routing and network pivoting tools. This is intended for practitioners who already have solid offensive-security fundamentals.", url:"https://drive.google.com/drive/folders/1szf2vgueGvSWCUcd0-LHQp2sAuvE9nLd", tags:["free","ext"], level:"advance", team:"red" },
+      { title:"CompTIA Security+ Study Bank", desc:"A dedicated exam-prep folder with domain-by-domain notes, practice questions and configuration walkthroughs mapped to the official SY0-701 objectives. Useful as a supplementary study aid alongside any of the free Security+ courses listed elsewhere on this page.", url:"https://drive.google.com/drive/folders/106Oo8yist33rLkFaDxgxkUk9HcRPvacW", tags:["free","ext"], level:"moderate", team:"yellow" },
+      { title:"CEH v13 AI Training Drive", desc:"Community-captured material covering the CEH v13 curriculum's AI-focused update, including AI-assisted reconnaissance, machine-learning-based evasion and automated vulnerability discovery. It's one of the few free resources that covers this newer version in real depth.", url:"https://drive.google.com/drive/folders/14jjSnprC7AxqPCo8pl6hDZYtg8tuehs-", tags:["free","ext"], level:"advance", team:"red" },
+      { title:"Web App Pentesting & WAF Deployment", desc:"Covers both sides of the same problem: complete web-application vulnerability assessment workflows using native Kali Linux tools, and practical Web Application Firewall deployment and configuration. Understanding how a WAF is configured makes bypassing it far easier to learn.", url:"https://drive.google.com/drive/folders/1dMMTBuLAuIGfra5TAFkThe9VGYh5y-Az", tags:["free","ext"], level:"moderate", team:"purple" },
+      { title:"Ethical Hacking Basics & Python Scripting", desc:"An ideal starting folder for someone moving from general IT into active security testing, covering Linux fundamentals, HTTP and web basics, Wireshark traffic analysis, Nmap scanning and Python scripting for automation. It even includes a themed bootcamp series to keep the material engaging.", url:"https://drive.google.com/drive/folders/15J_qMzQ8TEI4VIjSF_0g6Rpf-fi2wVBl", tags:["free","ext"], level:"easy", team:"red" },
+      { title:"Mega Multi-Course Vault (Udemy-Sourced)", desc:"A large, wide-ranging Mega.nz folder containing many Udemy-sourced courses spanning cybersecurity, programming, web development, business and general computer science and IT topics. It's useful if you want one big shared drive covering both security and adjacent tech skills rather than a security-only vault.", url:"https://mega.nz/folder/AicjFarJ#TWeFzkrIrf8FW5lGMunA2g", tags:["free","ext"], level:"easy", team:"yellow" },
+    ]
+  },
+  {
+    id: "github",
+    title: "GitHub Repositories & Toolkits",
+    desc: "Version-controlled roadmaps and living resource archives maintained by the community.",
+    items: [
+      { title:"Cybersecurity Top 10 Domains Roadmap", desc:"An interactive, clickable breakdown of the ten pillars of information security, from network security and cryptography to cloud security and digital forensics. It's most useful before you commit months of study to a single specialization, so you can see the whole map first.", url:"https://ameer-18-star.github.io/CyberSecurity_Roadmap/", tags:["free","ext"], level:"easy", team:"yellow" },
+      { title:"TryHackMe Complete Learning Roadmap", desc:"A curated GitHub repository that sequences the TryHackMe room ecosystem in a logical, dependency-aware order instead of leaving you to jump randomly between rooms. It tells you exactly what to attempt first, second and third based on how topics build on each other.", url:"https://github.com/uttambodara/TryHackMeRoadmap", tags:["free","ext"], level:"easy", team:"yellow" },
+      { title:"CTF Free Rooms Archive", desc:"A living, community-updated cheat sheet of one-hundred-percent free Capture The Flag practice labs pulled from TryHackMe, HackTheBox, PentesterLab and other platforms, searchable by topic. Handy for quickly finding a lab on a specific technique you're trying to practice.", url:"https://github.com/blacks1ph0n/ctf-free-rooms", tags:["free","ext"], level:"moderate", team:"red" },
+    ]
+  },
+  {
+    id: "portals",
+    title: "Portals, Blogs & Vendor Websites",
+    desc: "The training homepages themselves — where each organization hosts its full free catalog.",
+    items: [
+      { title:"Picus Security Purple Academy", desc:"The home portal for Picus's free MITRE ATT&CK, red team, blue team and ransomware-focused micro-courses, all of which award certificates and CPE credits. It's organized into structured learning paths rather than a loose list of videos.", url:"https://academy.picussecurity.com/courses", tags:["free","official"], level:"moderate", team:"purple" },
+      { title:"IT Masters Free University Short Courses", desc:"A Charles Sturt University-affiliated portal hosting free short courses ranging from penetration testing basics to CISSP and CISM preparation. Everything here is genuinely free with an actual final exam and certificate.", url:"https://itmasters.edu.au/free-university-short-courses/cybersecurity", tags:["free","official"], level:"moderate", team:"yellow" },
+      { title:"Cybrary Catalog", desc:"A large library mixing free and paid content, including full career paths, skill paths and certification prep for roles like SOC Analyst and Penetration Tester. Plenty of genuinely useful material sits behind the free tier alone.", url:"https://www.cybrary.it/catalog", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"Cisco Networking Academy (NetAcad)", desc:"Cisco's dedicated free training hub for cybersecurity and networking, featuring interactive labs built around tools like Cisco Packet Tracer. It covers everything from absolute beginner content to SOC and ethical hacking career paths.", url:"https://www.netacad.com/catalogs/learn/cybersecurity?category=course", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"Qualys Training & Certification Center", desc:"A vendor training hub covering vulnerability management, compliance and cloud security, entirely free with cloud-based hands-on labs and official certifications at the end. It's especially valuable if you'll be working with the Qualys platform professionally.", url:"https://www.qualys.com/training", tags:["free","official"], level:"moderate", team:"blue" },
+      { title:"Palo Alto Networks Beacon", desc:"Free foundational courses on network security, cloud security and Security Operations Center concepts from Palo Alto's own education platform. No prerequisites and no software installation are required to get started.", url:"https://www.paloaltonetworks.com/cyberpedia/free-cybersecurity-education-courses", tags:["free","official"], level:"easy", team:"blue" },
+      { title:"Security Blue Team", desc:"Home of the free Blue Team Junior Analyst pathway bundle, covering threat hunting, digital forensics, network analysis and OSINT across a set of introductory courses. It's specifically built around defensive security career skills.", url:"https://www.securityblue.team/courses/blue-team-junior-analyst-pathway-bundle", tags:["free","official"], level:"easy", team:"blue" },
+      { title:"AttackIQ Academy", desc:"A free training platform focused on threat-informed defense, adversary emulation and breach and attack simulation, with structured MITRE ATT&CK and Purple Teaming learning paths. It also includes a community space for ongoing peer support.", url:"https://www.academy.attackiq.com/learning-paths", tags:["free","official"], level:"moderate", team:"purple" },
+      { title:"Securiti Education", desc:"A free certification hub covering data privacy, data security posture management and AI governance, aimed at privacy officers, compliance teams and data security professionals. Most certifications here also earn IAPP continuing-education credits.", url:"https://education.securiti.ai/certifications/privacyops/", tags:["free","official"], level:"moderate", team:"yellow" },
+      { title:"TCM Security Academy (All Access Pass)", desc:"A subscription platform whose free tier still unlocks over twenty-five hours of foundational content, including Linux, help-desk skills and Python programming basics. The paid tiers unlock the full, much larger catalog of offensive-security courses.", url:"https://academy.tcm-sec.com/p/the-all-access-pass#courses", tags:["free","paid"], level:"easy", team:"red" },
+      { title:"upGrad Free Courses", desc:"A broad library of short, certificate-bearing free courses spanning cybersecurity fundamentals, AI, data science and business skills. Good for quick, low-commitment skill-building outside a single dedicated security track.", url:"https://www.upgrad.com/us/free-course/?country=us", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"Huawei Talent Learning Portal", desc:"A vendor-sponsored hub offering enterprise-level certification tracks, cloud computing essentials and core routing and switching modules. It's particularly relevant for professionals working in markets where Huawei equipment is widely deployed.", url:"https://e.huawei.com/en/talent/learning/#/home", tags:["free","official"], level:"moderate", team:"yellow" },
+      { title:"EC-Council Cybersecurity Exchange", desc:"Free beginner courses and toolkits covering security mindset, cloud security, DevSecOps and how emerging AI tools intersect with ethical hacking. A good complementary source alongside EC-Council's main free course catalog.", url:"https://www.eccouncil.org/cybersecurity-exchange/cyber-novice/", tags:["free","official"], level:"easy", team:"yellow" },
+    ]
+  },
+  {
+    id: "videos",
+    title: "YouTube Playlists & Video Courses",
+    desc: "Full-length, no-signup video courses for people who learn best by watching.",
+    items: [
+      { title:"CS50: Introduction to Cybersecurity (Harvard, via freeCodeCamp)", desc:"A full-length Harvard course looking at both high-level and technical understanding of digital threats, covering how to secure accounts, data, systems and software while preserving personal privacy. No prior technical background is assumed.", url:"https://www.freecodecamp.org/news/", tags:["free","ext"], level:"easy", team:"yellow" },
+      { title:"Google Cloud Cybersecurity Professional Certificate (via freeCodeCamp)", desc:"A cloud-native security course covering risk management, authentication and authorization concepts, auditing, and how incident response and recovery work in cloud environments. Useful if your target role involves securing cloud infrastructure specifically.", url:"https://www.freecodecamp.org/news/", tags:["free","ext"], level:"moderate", team:"blue" },
+      { title:"Ethical Hacking Full Course: Beginner to Advanced (via freeCodeCamp)", desc:"A long-form offensive-security walkthrough covering Kali Linux, Metasploit, reconnaissance, scanning and exploit development from the ground up. It progresses from true beginner material into genuinely advanced offensive techniques.", url:"https://www.freecodecamp.org/news/", tags:["free","ext"], level:"moderate", team:"red" },
+    ]
+  },
+  {
+    id: "books",
+    title: "Books, Cheat Sheets & Documentation",
+    desc: "Reference material worth bookmarking — for reading during a coffee break, not a lab session.",
+    items: [
+      { title:"SkillFront ISO/IEC 27001 E-Book & Audiobook", desc:"A sixty-three-page e-book paired with a fifty-eight-minute audiobook, bundled free with the ISO/IEC 27001 Associate certification promotion. Covers ISMS structure, mandatory requirements and a step-by-step implementation guide in a format you can consume passively.", url:"https://www.skillfront.com/ISO-IEC-27001-Information-Security-Associate", tags:["free","official"], level:"easy", team:"yellow" },
+      { title:"CompTIA Security+ Study Bank (Drive)", desc:"Domain-by-domain conceptual notes, practice question sets and configuration walkthroughs mapped directly to the current SY0-701 exam objectives. A solid reference to keep open alongside video-based Security+ prep.", url:"https://drive.google.com/drive/folders/106Oo8yist33rLkFaDxgxkUk9HcRPvacW", tags:["free","ext"], level:"moderate", team:"yellow" },
+      { title:"Cybersecurity Top 10 Domains Roadmap (Reference)", desc:"A single-page, always-available reference breakdown of the ten pillars of information security, useful for quickly refreshing your sense of the overall landscape. Works well as a bookmarked companion to the GitHub-hosted version above.", url:"https://ameer-18-star.github.io/CyberSecurity_Roadmap/", tags:["free","ext"], level:"easy", team:"yellow" },
+    ]
+  },
+];
+
+/* ---------------- render ---------------- */
+const catNav = document.getElementById('catNav');
+const main = document.getElementById('main');
+let totalItems = 0;
+
+const TEAM_LABEL = { red:"Red Team", blue:"Blue Team", purple:"Purple Team", yellow:"General" };
+const LEVEL_LABEL = { easy:"Easy", moderate:"Moderate", advance:"Advance" };
+
+CATEGORIES.forEach(cat => {
+  totalItems += cat.items.length;
+
+  const navA = document.createElement('a');
+  navA.href = '#' + cat.id;
+  navA.textContent = cat.title.split(' ')[0];
+  catNav.appendChild(navA);
+
+  const section = document.createElement('section');
+  section.className = 'category';
+  section.id = cat.id;
+
+  section.innerHTML = `
+    <div class="cat-head">
+      <h2>${cat.title}</h2>
+      <span class="count">${cat.items.length}</span>
+    </div>
+    <p class="cat-desc">${cat.desc}</p>
+    <div class="grid" data-grid="${cat.id}"></div>
+  `;
+  main.appendChild(section);
+
+  const grid = section.querySelector('.grid');
+  cat.items.forEach(item => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.dataset.search = (item.title + ' ' + item.desc + ' ' + cat.title + ' ' + item.level + ' ' + item.team).toLowerCase();
+
+    const badgeHtml = item.tags.map(t => {
+      const label = t === 'ext' ? 'External' : t.charAt(0).toUpperCase() + t.slice(1);
+      return `<span class="badge ${t}">${label}</span>`;
+    }).join('');
+
+    const levelBadge = `<span class="badge level">${LEVEL_LABEL[item.level] || 'Moderate'}</span>`;
+    const teamBadge = `<span class="badge team-${item.team}">${TEAM_LABEL[item.team] || 'General'}</span>`;
+
+    card.innerHTML = `
+      <h3>${item.title}</h3>
+      <div class="badges">${levelBadge}${teamBadge}${badgeHtml}</div>
+      <p>${item.desc}</p>
+      <a class="visit" href="${item.url}" target="_blank" rel="noopener noreferrer nofollow">Visit Resource &rarr;</a>
+    `;
+    grid.appendChild(card);
+  });
+});
+
+document.getElementById('totalCount').textContent = totalItems + '+';
+document.getElementById('totalCats').textContent = CATEGORIES.length;
+
+/* ---------------- search / filter ---------------- */
+const searchInput = document.getElementById('searchInput');
+const resultCount = document.getElementById('resultCount');
+
+function runSearch(){
+  const q = searchInput.value.trim().toLowerCase();
+  let visible = 0;
+
+  CATEGORIES.forEach(cat => {
+    const grid = document.querySelector(`[data-grid="${cat.id}"]`);
+    let catVisible = 0;
+    grid.querySelectorAll('.card').forEach(card => {
+      const match = !q || card.dataset.search.includes(q);
+      card.style.display = match ? 'flex' : 'none';
+      if (match){ catVisible++; visible++; }
+    });
+    const section = document.getElementById(cat.id);
+    section.style.display = catVisible === 0 ? 'none' : 'block';
+  });
+
+  resultCount.textContent = q
+    ? `Showing ${visible} of ${totalItems} resources for "${q}"`
+    : '';
+}
+
+searchInput.addEventListener('input', runSearch);
+</script>
+</body>
+</html>
